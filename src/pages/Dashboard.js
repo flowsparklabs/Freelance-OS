@@ -1,5 +1,7 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 import Card from '../components/ui/Card.js';
 import Button from '../components/ui/Button.js';
 import Icon from '../components/ui/Icon.js';
@@ -24,9 +26,18 @@ const Dashboard = ({ stats, setActiveTab }) => {
 
     return (
         <div className="space-y-8 animate-fade-in">
-            <header>
-                <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
-                <p className="text-slate-500 dark:text-slate-400">Welcome back, here's what's happening.</p>
+            <header className="flex justify-between items-center">
+                <div>
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
+                    <p className="text-slate-500 dark:text-slate-400">Welcome back, here's what's happening.</p>
+                </div>
+                <button
+                    onClick={() => signOut(auth)}
+                    className="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors md:hidden"
+                    title="Log Out"
+                >
+                    <Icon name="LogOut" size={20} />
+                </button>
             </header>
 
             {/* Stats Grid */}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 import Card from '../components/ui/Card.js';
 import Button from '../components/ui/Button.js';
 import Icon from '../components/ui/Icon.js';
@@ -37,6 +39,17 @@ const Settings = ({ plan, viewMode, setViewMode, t }) => {
                         <span className="font-bold text-lg">Nov 2023</span>
                     </div>
                 </div>
+            </Card>
+
+            <Card title="Danger Zone" className="border-red-100 dark:border-red-900/30">
+                <p className="text-sm text-slate-500 mb-4">Sign out of your account on this device.</p>
+                <button
+                    onClick={() => signOut(auth)}
+                    className="w-full py-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-bold rounded-xl hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors flex items-center justify-center gap-2"
+                >
+                    <Icon name="LogOut" size={20} />
+                    Log Out
+                </button>
             </Card>
         </div>
     );

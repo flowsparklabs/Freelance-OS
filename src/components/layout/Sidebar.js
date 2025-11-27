@@ -1,5 +1,7 @@
 import React from 'react';
 import Icon from '../ui/Icon.js';
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const Sidebar = ({ activeTab, setActiveTab, plan, t, darkMode, setDarkMode, currency, setCurrency, language, setLanguage }) => {
     const menuItems = [
@@ -11,6 +13,10 @@ const Sidebar = ({ activeTab, setActiveTab, plan, t, darkMode, setDarkMode, curr
         { id: 'subscription', icon: 'Sparkles', label: 'Upgrade Plan' },
         { id: 'settings', icon: 'Settings', label: 'Settings' }
     ];
+
+    const handleLogout = async () => {
+        await signOut(auth);
+    };
 
     return (
         <aside className="w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 fixed h-full z-20 hidden md:flex flex-col">
@@ -41,7 +47,7 @@ const Sidebar = ({ activeTab, setActiveTab, plan, t, darkMode, setDarkMode, curr
                     </div>
                 </div>
                 <button
-                    onClick={() => import('../../firebase').then(module => module.auth.signOut())}
+                    onClick={handleLogout}
                     className="w-full flex items-center justify-center gap-2 p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors text-sm font-medium"
                 >
                     <Icon name="LogOut" size={18} />
