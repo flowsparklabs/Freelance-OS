@@ -29,7 +29,7 @@ const Sidebar = ({ activeTab, setActiveTab, plan, t, darkMode, setDarkMode, curr
                 ))}
             </nav>
             <div className="p-4 border-t border-slate-100 dark:border-slate-700">
-                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl">
+                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl mb-2">
                     <div className="flex items-center gap-3 mb-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white font-bold">GC</div>
                         <div><p className="text-sm font-bold">Gen Craft</p><p className="text-xs text-slate-500">{plan} Plan</p></div>
@@ -40,6 +40,13 @@ const Sidebar = ({ activeTab, setActiveTab, plan, t, darkMode, setDarkMode, curr
                         <button onClick={() => setLanguage(language === 'en' ? 'si' : 'en')} className="p-2 rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-colors text-slate-500 text-xs font-bold">{language.toUpperCase()}</button>
                     </div>
                 </div>
+                <button
+                    onClick={() => import('../../firebase').then(module => module.auth.signOut())}
+                    className="w-full flex items-center justify-center gap-2 p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors text-sm font-medium"
+                >
+                    <Icon name="LogOut" size={18} />
+                    <span>Logout</span>
+                </button>
             </div>
         </aside>
     );

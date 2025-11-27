@@ -45,6 +45,7 @@ const Login = () => {
                 });
             }
         } catch (err) {
+            console.error("Google Login Error:", err);
             setError(err.message);
         } finally {
             setLoading(false);
