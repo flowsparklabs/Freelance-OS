@@ -44,32 +44,32 @@ export const calculateTotal = (items) => {
 
 // Firestore Helpers
 
-export const getInvoices = async (uid) => {
-    const q = query(collection(db, "invoices"), where("uid", "==", uid));
+export const getInvoices = async (userId) => {
+    const q = query(collection(db, "invoices"), where("userId", "==", userId));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
-export const addInvoice = async (uid, invoice) => {
-    await addDoc(collection(db, "invoices"), { ...invoice, uid });
+export const addInvoice = async (userId, invoice) => {
+    await addDoc(collection(db, "invoices"), { ...invoice, userId });
 };
 
-export const getClients = async (uid) => {
-    const q = query(collection(db, "clients"), where("uid", "==", uid));
+export const getClients = async (userId) => {
+    const q = query(collection(db, "clients"), where("userId", "==", userId));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
-export const addClient = async (uid, client) => {
-    await addDoc(collection(db, "clients"), { ...client, uid });
+export const addClient = async (userId, client) => {
+    await addDoc(collection(db, "clients"), { ...client, userId });
 };
 
-export const getExpenses = async (uid) => {
-    const q = query(collection(db, "expenses"), where("uid", "==", uid));
+export const getExpenses = async (userId) => {
+    const q = query(collection(db, "expenses"), where("userId", "==", userId));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
-export const addExpense = async (uid, expense) => {
-    await addDoc(collection(db, "expenses"), { ...expense, uid });
+export const addExpense = async (userId, expense) => {
+    await addDoc(collection(db, "expenses"), { ...expense, userId });
 };
